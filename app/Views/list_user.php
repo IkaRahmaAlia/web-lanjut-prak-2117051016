@@ -14,33 +14,50 @@
 </center>
   </figcaption>
 </figure>
-<!-- <a href="tambah.php" class="btn btn-primary">Tambah Data</a> -->
+
+<!-- <a href="<?=base_url('/user/create') ?>" type="button" class="btn btn-primary">tambah data</a> -->
 
 <div class= "container">
-<table class="table table-success">
-    <thead class="table-light">
-        <tr>
-            <th>ID</th>
-            <th>Nama</th>
-            <th>NPM</th>
-            <th>Kelas</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        <?php
-        foreach ($users as $user){
-        ?>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="<?=base_url('/user/create') ?>" type="button" class="btn btn-primary">tambah data</a>
+        <br>
+    </div>
+    <table class="table table-success">
+        <thead class="table-light">
             <tr>
-                <td><?= $user['id'] ?></td>
-                <td><?= $user['nama'] ?></td>
-                <td><?= $user['npm'] ?></td>
-                <td><?= $user['nama_kelas'] ?></td>
-                <td></td>
+                <th> No. </th>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>NPM</th>
+                <th>Kelas</th>
+                <th>Aksi</th>
+                <th>Foto</th>
             </tr>
-        <?php
-        }
-        ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody class="table-group-divider">
+            <?php
+            $no = 1;
+            foreach ($users as $user){
+            ?>
+                <tr>
+                    <td><?= $no++ ?></td>
+                    <td><?= $user['id'] ?></td>
+                    <td><?= $user['nama'] ?></td>
+                    <td><?= $user['npm'] ?></td>
+                    <td><?= $user['nama_kelas'] ?></td>
+                    <td>
+                        <a href="<?= base_url('user/' . $user['id']) ?>" class="btn btn-info"> Detail</a>
+                        <button tyepe="button " class="btn btn-warning"> Edit </button>
+                        <button type="button" class="btn btn-danger">Delete </button>
+                    </td>
+                    <td>
+                        <img src="<?= $user['foto'] ?? '<default-foto>' ?>" alt="" style="width: 100px;">
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 <?= $this->endSection() ?>

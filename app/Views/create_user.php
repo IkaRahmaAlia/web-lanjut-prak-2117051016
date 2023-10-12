@@ -3,7 +3,7 @@
 
     <br>
     <div class="container">
-        <form action="<?=base_url('user/store')?>" method="post">
+        <form action="<?=base_url('user/store')?>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-25">
                     <label for="fname">Nama</label>
@@ -48,6 +48,9 @@
                     </select>
                 </div>
             </div>
+
+            <label> Choose the File to upload: </label>
+            <input type="file" id="foto" name="foto" /> <br /><br />
             <br>
             <div class="row">
                 <input type="submit" value="Simpan">
