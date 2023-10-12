@@ -25,7 +25,7 @@ class UserController extends BaseController
         return view ('list_user', $data);
     }
 
-      public function profile($nama = "Ika Rahma Alia", $kelas = "CD", $npm = "2117051016")
+      public function profile($nama = "", $kelas = "", $npm = "")
     {
         $data = [
             'nama' => $nama,
@@ -88,6 +88,15 @@ class UserController extends BaseController
             $validation = \Config\Services::validation();
             return redirect()->to(base_url('/user/create'))->withInput()->with('validation', $validation);
         }
+        $path = 'assets/uploads/img/';
+
+        $foto = $this->request->getFile('foto');
+
+        $name = $foto->getRandomName();
+
+        if ($foto->move($path, $name)){
+            $foto = base_url($path . $name);
+        }
 
         $userModel = new userModel();
 
@@ -95,17 +104,30 @@ class UserController extends BaseController
             'nama' => $this ->request->getVar('nama'),
             'id_kelas' => $this ->request->getVar('kelas'),
             'npm' => $this ->request->getVar('npm'),
+            'foto' => $foto
 
         ]);
 
-        // $data = [
-        //     'nama' => $this -> request->getVar('nama'),
-        //     'kelas' => $this -> request->getVar('kelas'),
-        //     'npm' => $this -> request->getVar('npm'),
+        $data = [
+            'nama' => $this -> request->getVar('nama'),
+            'kelas' => $this -> request->getVar('kelas'),
+            'npm' => $this -> request->getVar('npm'),
             
-        // ];
+        ];
         // return view('profile', $data);
 
         return redirect()->to('/user');
     }
+
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data=[
+            'title' => 'profile',
+            'user' => $user,
+        ];
+
+        return view ('profile', $data);
+    }
+
 }

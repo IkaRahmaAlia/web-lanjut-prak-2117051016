@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\UserController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -16,4 +17,5 @@ $routes->post('/user/store', 'UserController::store');
 
 // read
 $routes->get('/user', 'UserController::index');
+$routes->get('user/(:any)', [UserController::class, 'show']);
 

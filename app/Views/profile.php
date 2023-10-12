@@ -6,22 +6,22 @@
     -->
    
    <div class="d-flex justify-content-center align-items-center flex-column" style="height:100vh;width:100%;">
-  <img src="https://avatars.githubusercontent.com/u/92287665?s=400&u=f8c9ce315bf10592bc24ba750f18088bbb3ee8a0&v=4" class="rounded-circle mx-auto d-block py-3" alt="..." width="160" height="190">
+   <img src="<?= $user['foto'] ?? '<default-foto>' ?>" alt="..." width="160" height="190">
     <table class="mx-auto">
       <tr>
         <td>
-          <button type="button" class="btn btn-secondary" style="width: 320px"><?= $nama ?></button>
+          <button type="button" class="btn btn-secondary" style="width: 320px"><?= $user['nama'] ?></button>
         </td>
       </tr>
       <tr>
       <tr>
         <td>
-          <button type="button" class="btn btn-secondary" style="width: 320px"><?= $npm ?></button>
+          <button type="button" class="btn btn-secondary" style="width: 320px"><?= $user ['npm']?></button>
         </td>
       </tr>
       <tr>
         <td>
-        <button type="button" class="btn btn-secondary" style="width: 320px"><?= $kelas ?></button>
+        <button type="button" class="btn btn-secondary" style="width: 320px"><?= $user['nama_kelas'] ?></button>
         </td>
       </tr>
   
